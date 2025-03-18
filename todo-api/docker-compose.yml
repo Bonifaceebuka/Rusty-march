@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  rust_app:
+    build: .
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    restart: always
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_USERNAME}
+      POSTGRES_DB: ${DB_USERNAME}
+    ports:
+      - ${DB_PORT_MAPPED}:${DB_PORT}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  postgres_data:

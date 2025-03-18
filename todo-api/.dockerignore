@@ -1,0 +1,37 @@
+vendor
+node_modules/
+npm-debug.log
+yarn-error.log
+*.7z
+*.zip
+*.bak
+*.log
+*.orig
+*.cache
+
+# Laravel specific
+.env
+app/storage/
+bootstrap/cache
+bootstrap/compiled.php
+public/hot
+public_html/hot
+public_html/storage
+public/storage
+public/vendor
+storage/*.key
+storage/logs
+
+# Jetbrains
+.idea
+
+# Developer env
+/README
+/tmp
+/temp
+/temporary
+/misc
+/cache
+/backup
+/bak
+/target

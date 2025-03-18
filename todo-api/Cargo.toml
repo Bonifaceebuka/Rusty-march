@@ -1,0 +1,10 @@
+[package]
+name = "todo_api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "0.7"
+tokio = { version = "1", features = ["full"] }
+sqlx = { version = "0.7", features = ["postgres", "runtime-tokio"] }
+dotenv = "0.15"
