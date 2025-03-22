@@ -1,14 +1,22 @@
-# Use Rust nightly image
-FROM rustlang/rust:nightly as builder
+# Use the Rust official image as the base
+FROM rust:latest
 
 # Set the working directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Install cargo-watch for live reloading
+# Install cargo-watch
 RUN cargo install cargo-watch
 
-# Copy source code
+# Copy the Cargo manifest and dependencies first to cache dependencies
+COPY Cargo.toml Cargo.lock ./
+RUN mkdir src && echo "fn main() {}" > src/main.rs 
+RUN cargo build
+
+# Copy the rest of the application
 COPY . .
 
-# Run the app with live reloading
+# Expose the application port (if applicable)
+EXPOSE 8080
+
+# Run cargo-watch to automatically restart on file changes
 CMD ["cargo", "watch", "-x", "run"]
